@@ -33,7 +33,7 @@ def res(file):
         return "CORNERLONG"
     if ((h == 1112 and w in range(790, 794)) or (h in range(1514,1518) and w == 1080)):
         return "KURTKAT"
-    if ((h in range(1038,1042)  and w in range(358,362)) or (h == 1920 and w in range(663,667))):
+    if (h == 1920 and w == 720):
         return "KASPRZAKA"
     if (h in range(1918,1922)  and w in range(1014,1017)):
         return "MARRIOTT"
