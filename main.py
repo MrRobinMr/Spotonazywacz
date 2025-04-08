@@ -4,7 +4,7 @@ from tkinter import ttk
 from tkinter import filedialog as fd
 import pathlib as p
 import moviepy.video.io.ImageSequenceClip
-from moviepy.editor import VideoFileClip
+from moviepy import VideoFileClip
 from PIL import Image
 
 def res(file):
@@ -133,11 +133,12 @@ class Con(tk.Frame):
                     label.config(text=str(self.array[i]))
                 self.dragged_index = index
     def rend(self):
-        temp_path = f'{self.path}\my_video.mp4'
+        temp_path = f'"{self.path}\my_video.mp4"'
         clip = moviepy.video.io.ImageSequenceClip.ImageSequenceClip(self.array, fps=1/float(self.text_entry.get()))
         clip.write_videofile(temp_path)
         del clip
         Rend(self.kat, self.fre, self.nam, self.sta, self.end, self.dur, self.addname, self.corner, p.Path(temp_path))
+        del Rend
         os.remove(temp_path)
         self.master.destroy()
 
@@ -226,6 +227,11 @@ class Rend:
             self.list_file.append(file)
         self.setRez()
         self.startRender()
+    def __del__(self):
+        self.rez = {"POZIOM": 0, "PION": 0, "KURTPOZ": 0, "KURTWSCH": 0, "DWSROD": 0, "PLU": 0, "CORNERLONG": 0,"KURTKAT": 0, "KASPRZAKA": 0, "MARRIOTT": 0, "KURTCENT": 0, "INNE": 0, }
+        self.rez_u = {"POZIOM": [], "PION": [], "KURTPOZ": [], "KURTWSCH": [], "DWSROD": [], "PLU": [], "CORNERLONG": [],"KURTKAT": [], "KASPRZAKA": [], "MARRIOTT": [], "KURTCENT": [], "INNE": []}
+        self.rezPom = self.rez.copy()
+
     def setFreq(self, fre):
         if (fre.get() == ""):
             self.freq = ""
@@ -278,17 +284,18 @@ class Rend:
             new = p.PureWindowsPath('\\'.join(str(f).split('\\')[:-1]) + '\\' + name)
             del reso
             if (f.suffix == '.jpg' or f.suffix == '.jpeg'):
-                komp = "ffmpeg -framerate " + str(self.dur) + " -i \"" + str(
-                    f) + "\" -codec:v libx264 -b:v 7000k -vf fps=25 -pix_fmt yuv420p \"" + str(new) + "\""
+                komp = "ffmpeg -framerate " + str(self.dur) + " -i \"" + str(f) + "\" -codec:v libx264 -b:v 7000k -vf fps=25 -pix_fmt yuv420p \"" + str(new) + "\""
             elif (f.suffix == '.png'):
-                komp = "ffmpeg -framerate " + str(self.dur) + " -i \"" + str(
-                    f) + "\" -codec:v libx264 -b:v 7000k -vf fps=25 -pix_fmt yuv420p \"" + str(new) + "\""
+                komp = "ffmpeg -framerate " + str(self.dur) + " -i \"" + str(f) + "\" -codec:v libx264 -b:v 7000k -vf fps=25 -pix_fmt yuv420p \"" + str(new) + "\""
             else:
-                komp = "ffmpeg -i \"" + str(
-                    f) + "\" -codec:v libx264 -x264-params \"nal-hrd=cbr\" -an -b:v 7000k -r 24 \"" + str(new) + "\""
+                komp = "ffmpeg -i \"" + str(f) + "\" -codec:v libx264 -x264-params \"nal-hrd=cbr\" -an -b:v 7000k -r 24 \"" + str(new) + "\""
             print(komp)
             os.system(komp)
         self.list_file.clear()
+        for ner in self.rez:
+            self.rez[ner] = 0
+        for ner_u in self.rez_u:
+            self.rez_u[ner_u] = []
         print("\nZakończono!\n")
         
 
