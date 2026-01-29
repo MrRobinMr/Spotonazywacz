@@ -2,51 +2,44 @@
 
 ![Project Preview](preview.png)
 
-Spotonazywacz to specjalistyczne narzędzie oparte na języku Python, przeznaczone do pobierania i zarządzania plikami muzycznymi. Projekt kładzie duży nacisk na poprawne metadane oraz czyste i przejrzyste nazewnictwo plików. Dzięki integracji z silnikiem FFmpeg, zapewnia wysoką jakość przetwarzania dźwięku i idealnie zorganizowaną lokalną bibliotekę muzyczną.
+Spotonazywacz to inteligentne narzędzie w języku Python służące do pobierania i zarządzania plikami muzycznymi. Program automatycznie dba o poprawne metadane oraz przejrzyste nazewnictwo Twojej biblioteki audio.
 
-## Wymagania projektowe
+## Dlaczego Spotonazywacz?
 
-Aby pomyślnie uruchomić projekt, będziesz potrzebować:
-* **Python 3.10 lub nowszy**
-* **System operacyjny Windows** (wymagany do poprawnego działania skryptu instalacyjnego PowerShell)
-* **Pliki binarne FFmpeg**
+Projekt został zaprojektowany tak, aby maksymalnie uprościć proces przygotowania środowiska. Dzięki zintegrowanemu skryptowi instalacyjnemu, nie musisz ręcznie konfigurować bibliotek ani pobierać zewnętrznych narzędzi takich jak FFmpeg – program zrobi to za Ciebie.
 
-## Instalacja i konfiguracja
+## Wymagania
 
-Postępuj zgodnie z poniższymi krokami, aby upewnić się, że aplikacja działa poprawnie:
+* **System operacyjny:** Windows (wymagany do działania skryptu instalacyjnego .ps1)
+* **Python:** wersja 3.10 lub nowsza
+* **Uprawnienia:** Możliwość uruchamiania skryptów PowerShell (Set-ExecutionPolicy)
 
-### 1. Konfiguracja FFmpeg
-Aplikacja wymaga silnika FFmpeg do przetwarzania plików audio.
-* Musisz umieścić folder o nazwie **ffmpeg** bezpośrednio w głównym katalogu projektu.
-* Wewnętrzna struktura musi wyglądać następująco: `Spotonazywacz/ffmpeg/bin/ffmpeg.exe`
+## Szybki Start (Instalacja)
 
-### 2. Uruchomienie skryptu instalacyjnego
-Zamiast ręcznie instalować biblioteki, użyj dostarczonego skryptu automatyzacji znajdującego się w folderze głównym:
-* Znajdź plik **install.ps1**.
-* Kliknij go prawym przyciskiem myszy i wybierz **Uruchom z PowerShell**.
-* Skrypt automatycznie skonfiguruje środowisko i zainstaluje wszystkie niezbędne zależności Pythona.
+Aby uruchomić projekt po raz pierwszy, wykonaj poniższe kroki:
 
-## Jak używać
+1. **Uruchom instalator:**
+   Znajdź plik `install.ps1` w głównym folderze projektu. Kliknij go prawym przyciskiem myszy i wybierz **"Uruchom z PowerShell"** (Run with PowerShell).
+   
+   *Skrypt automatycznie:*
+   * Utworzy środowisko wirtualne (venv).
+   * Zainstaluje wymagane biblioteki Python.
+   * Pobierze i wypakuje oficjalne pliki binarne **FFmpeg**.
+   * Doda FFmpeg do zmiennych środowiskowych Twojego systemu.
 
-1. Potwierdź, że folder **ffmpeg** znajduje się w głównym katalogu projektu.
-2. Otwórz terminal lub wiersz poleceń w folderze projektu.
-3. Uruchom aplikację, wpisując:
+2. **Uruchom program:**
+   Po zakończeniu instalacji, otwórz terminal w folderze projektu i wpisz:
    **python main.py**
 
 ## Rozwiązywanie problemów
 
-* **Polityka wykonywania skryptów:** Jeśli PowerShell blokuje skrypt `install.ps1`, otwórz PowerShell jako Administrator i uruchom komendę: `Set-ExecutionPolicy RemoteSigned`.
-* **Problemy z FFmpeg:** Jeśli program się uruchamia, ale nie przetwarza dźwięku, sprawdź, czy folder `ffmpeg` ma nazwę pisaną małymi literami i czy zawiera podfolder `bin` z plikami wykonywalnymi `.exe`.
-* **Zdjęcie podglądowe:** Upewnij się, że plik `preview.png` znajduje się w katalogu głównym, aby obrazek nagłówka wyświetlał się poprawnie na GitHubie.
-
-## Kluczowe funkcje
-
-* Automatyczne pobieranie muzyki i inteligentne nazywanie plików.
-* Synchronizacja metadanych za pomocą FFmpeg.
-* Konfiguracja środowiska jednym kliknięciem dzięki dedykowanemu instalatorowi PowerShell.
-* Obsługa formatów audio o wysokiej wierności.
+* **Błąd uprawnień PowerShell:** Jeśli system blokuje skrypt, otwórz PowerShell jako Administrator i wpisz: `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`, a następnie spróbuj ponownie uruchomić instalator.
+* **Odświeżenie ścieżek:** Jeśli po instalacji system nadal nie "widzi" FFmpeg, zrestartuj swój edytor (np. VS Code) lub terminal.
 
 ## Autor
 
 **Jakub Nowak**
 * GitHub: [MrRobinMr](https://github.com/MrRobinMr)
+
+---
+*Uwaga: Ten projekt służy do celów edukacyjnych i zarządzania własną biblioteką plików.*
