@@ -1,15 +1,24 @@
+# --- Python ---
 __pycache__/
 *.py[cod]
 *$py.class
-
 venv/
 env/
 .env
+
+# --- FFmpeg (Teraz pobiera się przez skrypt) ---
+ffmpeg/
+ffmpeg.zip
+temp_ffmpeg/
+
+# --- Narzędzia budowania (PyInstaller) ---
+build/
+dist/
 *.spec
 
-.idea/
+# --- Pliki systemowe i IDE ---
+.vs/
 .vscode/
-ffmpeg/
+.idea/
+*.user
 *.log
-dist/
-build/
