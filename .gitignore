@@ -9,7 +9,7 @@ env/
 
 .idea/
 .vscode/
-
+ffmpeg/
 *.log
 dist/
 build/
